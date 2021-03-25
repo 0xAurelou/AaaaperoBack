@@ -8,7 +8,7 @@ using Shop.Data;
 using DTO;
 using Models;
 
-namespace Aaaapero.Controllers
+namespace AaaaperoBack.Controllers
 {
     [ApiController]
     [Route("[controller]")]
