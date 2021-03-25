@@ -22,7 +22,7 @@ namespace AaaaperoBack.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Customer>>> GetCustomer()
+        public async Task<ActionResult<IEnumerable<Customers>>> GetCustomer()
         {
             return await _context.customers.ToListAsync();
         }
@@ -60,7 +60,7 @@ namespace AaaaperoBack.Controllers
         }
         
         [HttpPost]
-        public async Task<ActionResult<Customer>> PostCustomer(Customer customer)
+        public async Task<ActionResult<Customers>> PostCustomer(Customers customer)
         {
             _context.customers.Add(customer);
             await _context.SaveChangesAsync();
