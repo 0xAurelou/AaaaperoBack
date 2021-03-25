@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using DTO;
 using Models;
 
-namespace AaaaperoBack.Controllers
+namespace BackEndAaaapero.Controllers
 {
     [ApiController]
     [Route("[controller]")]
