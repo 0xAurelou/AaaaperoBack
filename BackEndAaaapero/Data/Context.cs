@@ -1,11 +1,11 @@
 using Microsoft.EntityFrameworkCore;
-using Models ;
+using Models;
 namespace BackEndAaaapero.Data
 {
-    public class Context
+    public class Context : DbContext
     {
         public Context(DbContextOptions<Context> options) : base(options) {}
 
-        public DbSet<Customer> customers { get; set; }
+        public DbSet<Customers> customers { get; set; }
     }
 }
