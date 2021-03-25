@@ -47,7 +47,7 @@ namespace BackEndAaaapero.Controllers
             _context.customers.Add(customer);
             await _context.SaveChangesAsync();
             
-            return CreatedAtAction("GetCustomer", new { id = customer.Id }, customer);
+            return CreatedAtAction("GetCustomer", new { id = customer.customer_id }, customer);
         }
     }
 }

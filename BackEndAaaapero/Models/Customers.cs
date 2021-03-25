@@ -5,9 +5,8 @@ namespace Models
     public class Customers
     {
         [Key]
-        public int Id { get; set; }
-        public string First_name { get; set; }
-        public string Last_name { get; set; }
+        public int customer_id { get; set; }
+        public string customer_name { get; set; }
 
     }
 }
