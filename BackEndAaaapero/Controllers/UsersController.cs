@@ -67,6 +67,33 @@ namespace Controllers
                 Token = tokenString
             });
         }
+        [AllowAnonymous]
+        [HttpPost("register")]
+        public IActionResult Register([FromBody]RegisterModel model)
+        {
+            // map model to entity
+            var user = _mapper.Map<User>(model);
+
+            try
+            {
+                // create user
+                _userService.Create(user, model.Password);
+                return Ok();
+            }
+            catch (AppException ex)
+            {
+                // return error message if there was an exception
+                return BadRequest(new { message = ex.Message });
+            }
+        }
+
+        [HttpGet]
+        public IActionResult GetAll()
+        {
+            var users = _userService.GetAll();
+            var model = _mapper.Map<IList<UserModel>>(users);
+            return Ok(model);
+        }
 
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
