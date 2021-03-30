@@ -95,6 +95,43 @@ namespace Controllers
             return Ok(model);
         }
 
+        [HttpGet("{id}")]
+        public IActionResult GetById(int id)
+        {
+            var user = _userService.GetById(id);
+            var model = _mapper.Map<UserModel>(user);
+            return Ok(model);
+        }
+
+        [HttpPut("{id}")]
+        public IActionResult Update(int id, [FromBody]UpdateModel model)
+        {
+            //Finding who is logged in
+            int logged_in_user = int.Parse(User.Identity.Name);
+
+            // map model to entity and set id
+            var user = _mapper.Map<User>(model);
+            user.Id = id;
+
+            //Rejecting access if the logged in user is not same as the user updating information
+            if(logged_in_user != id)
+            {
+                return BadRequest(new { message = "Access Denied" });
+            }
+
+            try
+            {
+                // update user 
+                _userService.Update(user, model.CurrentPassword, model.NewPassword, model.ConfirmNewPassword);
+                return Ok();
+            }
+            catch (AppException ex)
+            {
+                // return error message if there was an exception
+                return BadRequest(new { message = ex.Message });
+            }
+        }
+
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
