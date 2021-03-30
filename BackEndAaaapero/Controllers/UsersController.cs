@@ -114,6 +114,14 @@ namespace Controllers
             var model = _mapper.Map<IList<UserModel>>(users);
             return Ok(model);
         }
+        
+        [HttpGet("{id}")]
+        public IActionResult GetById(int id)
+        {
+            var user = _userService.GetById(id);
+            var model = _mapper.Map<UserModel>(user);
+            return Ok(model);
+        }
 
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
